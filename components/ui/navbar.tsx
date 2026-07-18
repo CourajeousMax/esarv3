@@ -13,7 +13,7 @@ const links = [
 ]
 
 const bookingUrl = 
-'https://squareup.com/appointments/book/8c805443-b0f7-4e3a-b3fe-40e11b7419f5/ZTP8PZRX5ME1Y/start'
+'https://www.vagaro.com/esmeraldassaltyairretreat'
 const instagramURL = 
 'https://www.instagram.com/esmeraldassaltyairretreat/?hl=en'
 

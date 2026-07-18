@@ -32,9 +32,14 @@ export default function Locations() {
               <MapPin size={16} className="text-amber-500 shrink-0" />
               11055 SW 186th St Suite 102, Cutler Bay, FL 33157
             </p>
-            <button className="mt-2 w-full rounded-2xl bg-amber-500 px-6 py-3 text-black font-medium transition-colors hover:bg-amber-600">
+                 <a
+              href="https://www.vagaro.com/esmeraldassaltyairretreat"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 block w-full rounded-2xl bg-amber-500 px-6 py-3 text-center text-black font-medium transition-colors hover:bg-amber-600"
+            >
               Book Miami session
-            </button>
+            </a>
           </div>
         </div>
 

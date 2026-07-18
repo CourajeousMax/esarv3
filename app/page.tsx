@@ -16,6 +16,8 @@ import {
 } from "lucide-react";
 
 export default function Home() {
+  const bookingUrl = 
+'https://www.vagaro.com/esmeraldassaltyairretreat'
   const services = [
     {
       title: "Facials",
@@ -62,9 +64,15 @@ export default function Home() {
               Restore balance. Awaken your energy. Step into healing.
             </p>
 
-            <button className="mx-auto w-full rounded-2xl bg-amber-500 px-6 py-4 text-sm text-black shadow-xl hover:bg-amber-600 sm:w-auto sm:px-8 sm:py-6 sm:text-base md:mx-0">
+            <a
+              href="https://www.vagaro.com/esmeraldassaltyairretreat"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mx-auto block w-full rounded-2xl bg-amber-500 px-6 py-4 text-center text-sm text-black shadow-xl transition-colors hover:bg-amber-600 sm:w-auto sm:px-8 sm:py-6 sm:text-base md:mx-0 md:inline-block"
+            >
               Book Now
-            </button>
+            </a>
+            
           </section>
 
           <Image

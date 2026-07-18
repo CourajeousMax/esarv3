@@ -1,7 +1,44 @@
-import React from 'react'
-import { Phone, Mail, MapPin, Clock } from 'lucide-react'
+'use client'
+
+import { useState, type FormEvent } from 'react'
+import { Phone, Mail, MapPin, Clock, Loader2, CheckCircle2 } from 'lucide-react'
+
+// Get a free access key at https://web3forms.com — no signup required.
+// Replace the placeholder below with your real key.
+const WEB3FORMS_ACCESS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY'
+
+type Status = 'idle' | 'loading' | 'success' | 'error'
 
 export default function ContactUs() {
+  const [status, setStatus] = useState<Status>('idle')
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setStatus('loading')
+
+    const form = e.currentTarget
+    const formData = new FormData(form)
+    formData.append('access_key', WEB3FORMS_ACCESS_KEY)
+    formData.append('subject', 'New message from Esmeralda\'s website')
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      })
+      const result = await res.json()
+
+      if (result.success) {
+        setStatus('success')
+        form.reset()
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
+  }
+
   return (
     <section id="contact" className="bg-black px-6 py-16 sm:px-10 sm:py-20 md:px-16 lg:px-20 lg:py-32">
       <div className="max-w-6xl mx-auto text-center mb-12 lg:mb-16">
@@ -57,15 +94,22 @@ export default function ContactUs() {
             <div>
               <h3 className="text-amber-200 font-serif text-base sm:text-lg">Hours</h3>
               <p className="text-amber-300 text-sm sm:text-base">
-                Tue &ndash; Sat: 10am &ndash; 6pm<br />
-                Sun &ndash; Mon: Closed
+                Mon &ndash; Fri: 9 AM - 6PM <br />
+                Sat: 10AM &ndash; 6AM<br />
+                Sun: 8AM - 10PM
               </p>
             </div>
           </div>
         </div>
 
         {/* Contact form */}
-        <form className="bg-amber-950/30 border border-amber-800 rounded-3xl p-6 space-y-4 sm:p-8 sm:space-y-5 md:p-10">
+        <form
+          onSubmit={handleSubmit}
+          className="bg-amber-950/30 border border-amber-800 rounded-3xl p-6 space-y-4 sm:p-8 sm:space-y-5 md:p-10"
+        >
+          {/* Honeypot field — bots fill this in, humans never see it */}
+          <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
+
           <div>
             <label htmlFor="name" className="block text-amber-200 text-sm mb-2">
               Name
@@ -74,6 +118,7 @@ export default function ContactUs() {
               id="name"
               name="name"
               type="text"
+              required
               className="w-full rounded-xl bg-black/60 border border-amber-800 px-4 py-3 text-amber-100 placeholder-amber-700 focus:outline-none focus:border-amber-500"
               placeholder="Your name"
             />
@@ -87,6 +132,7 @@ export default function ContactUs() {
               id="email"
               name="email"
               type="email"
+              required
               className="w-full rounded-xl bg-black/60 border border-amber-800 px-4 py-3 text-amber-100 placeholder-amber-700 focus:outline-none focus:border-amber-500"
               placeholder="you@example.com"
             />
@@ -100,6 +146,7 @@ export default function ContactUs() {
               id="message"
               name="message"
               rows={4}
+              required
               className="w-full rounded-xl bg-black/60 border border-amber-800 px-4 py-3 text-amber-100 placeholder-amber-700 focus:outline-none focus:border-amber-500 resize-none"
               placeholder="How can we help?"
             />
@@ -107,10 +154,25 @@ export default function ContactUs() {
 
           <button
             type="submit"
-            className="w-full rounded-2xl bg-amber-500 hover:bg-amber-600 text-black font-medium px-6 py-3 transition-colors"
+            disabled={status === 'loading'}
+            className="w-full flex items-center justify-center gap-2 rounded-2xl bg-amber-500 hover:bg-amber-600 disabled:opacity-60 disabled:cursor-not-allowed text-black font-medium px-6 py-3 transition-colors"
           >
-            Send Message
+            {status === 'loading' && <Loader2 size={18} className="animate-spin" />}
+            {status === 'loading' ? 'Sending...' : 'Send Message'}
           </button>
+
+          {status === 'success' && (
+            <p className="flex items-center gap-2 text-amber-300 text-sm justify-center">
+              <CheckCircle2 size={16} />
+              Message sent — we'll be in touch soon.
+            </p>
+          )}
+
+          {status === 'error' && (
+            <p className="text-red-400 text-sm text-center">
+              Something went wrong. Please try again or email us directly.
+            </p>
+          )}
         </form>
 
       </div>
