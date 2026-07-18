@@ -57,7 +57,7 @@ export default function ContactUs() {
             <div>
               <h3 className="text-amber-200 font-serif text-base sm:text-lg">Phone</h3>
               <a href="tel:+13055551234" className="text-amber-300 hover:text-amber-400 transition-colors text-sm sm:text-base">
-                (305) 555-1234
+                (786) 505-3607
               </a>
             </div>
           </div>

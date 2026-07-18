@@ -131,10 +131,15 @@ export default function Home() {
             })}
           </div>
 
-          <div className="mx-auto mt-10 max-w-4xl space-y-8 text-center md:mt-12">
-            <button className="w-full rounded-2xl bg-amber-500 px-6 py-4 text-sm text-black shadow-lg hover:bg-amber-600 sm:w-auto sm:px-8 sm:py-6 sm:text-base">
+             <div className="mx-auto mt-10 max-w-4xl space-y-8 text-center md:mt-12">
+            <a
+              href="https://www.vagaro.com/esmeraldassaltyairretreat"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mx-auto block w-full rounded-2xl bg-amber-500 px-6 py-4 text-center text-sm text-black shadow-xl transition-colors hover:bg-amber-600 sm:w-auto sm:px-8 sm:py-6 sm:text-base md:mx-0 md:inline-block"
+            >
               Book your Experience
-            </button>
+            </a>
           </div>
         </section>
 
