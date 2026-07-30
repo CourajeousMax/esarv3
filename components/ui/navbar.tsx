@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image';
 import { Facebook, Instagram } from '@mui/icons-material';
 import { Menu, X, } from 'lucide-react'
 
@@ -24,7 +25,15 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 z-50 w-full border-b border-amber-900/40 bg-black/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-8 py-5 md:px-20">
 
-        <Link href="/" className="font-serif text-xl text-amber-400">
+        <Link href="/" className="flex items-center gap-3 font-serif text-xl text-amber-400">
+          {/* <Image
+            src="/public/logo.png"
+            alt="Esmeralda's Salty Air Retreat logo"
+            width={30}
+            height={30}
+            className="rounded-full"
+            priority
+          /> */}
           Esmeralda's Salty Air Retreat
         </Link>
 
